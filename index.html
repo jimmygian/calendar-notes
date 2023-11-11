@@ -34,11 +34,13 @@
 
   <body>
     
-    <!-- Header -->
+    <!-- ## HEADER ## -->
     <header>
       <h1 class="display-3">Work Day Scheduler</h1>
       <p class="lead">A simple calendar app for scheduling your work day</p>
-      <p id="currentDay" class="lead"></p>
+      <p id="currentDay" class="lead">
+      </p>
+      <p id="currentTime"></p>
     </header>
 
     <div class="container">
@@ -46,10 +48,19 @@
 
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
 
+    <!-- ## SCRIPTS ## -->
+
+    <!-- jQuery script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- day.js script -->
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+    <!-- Calendar day.js plugin -->
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/plugin/calendar.js"></script>
+    <!-- Advanced format -->
+    <script src="https://cdn.jsdelivr.net/npm/dayjs/plugin/advancedFormat.js"></script>
     <!-- My script -->
     <script src="./assets/js/script.js"></script>
+
   </body>
 </html>

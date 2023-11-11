@@ -1,8 +1,32 @@
-console.log("I work!");
+// day.js extensions
+dayjs.extend(window.dayjs_plugin_calendar);
+dayjs.extend(window.dayjs_plugin_advancedFormat);
 
-// Figure out today'sdate, and put it at the top of the page
-var startHour = "7 am";
-var endHour = "5 pm";
+
+// GLOBAL SELECTORS / CONSTANTS //
+
+const currentDay = dayjs();
+const timeEl = $('#currentTime');
+
+
+
+// FUNCTIONS //
+
+// Updates time every minute
+function updateTime() {
+    // sets current time to timeEl
+    timeEl.text(dayjs().format('h:mm:ss A'));
+
+    // Updates it every second
+    setInterval( function() {
+            let currentTime = dayjs();
+            timeEl.text(currentTime.format('h:mm:ss A'));
+        } ,1000);
+}
+
+
+
+
 
 // CREATE BLOCKS
 // Figure out how to make a block for every hour from 9 to 5 inclusive
@@ -14,9 +38,6 @@ var endHour = "5 pm";
     // be styled based on whether the hour is in the past, presest, or future
 
     // each block should add the stored notes to the appropriate
-
-    
-
 
 
 
@@ -45,3 +66,19 @@ var endHour = "5 pm";
 //  As the current time approaches the next hour, trigger
 //  an alert/dialog/modal that will say what is upcoming
 // Nice to have: Some way to indicate a task has been completed (checkbox, button, etc.?)
+
+
+
+
+// ## STARTUP FUNCTION ## //
+
+function startApp () {
+    // 1. Figure out today'sdate, and put it at the top of the page
+    let dayEl = $('#currentDay');
+    dayEl.text(currentDay.format('dddd, MMMM Do'));
+    // Starts Timer
+    updateTime()
+}
+
+// Calls startApp() function that starts all other startup functions
+startApp()
