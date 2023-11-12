@@ -17,8 +17,8 @@ const timeEl = $('#currentTime');
 const scheduleSectionDiv = $('.schedule-section');
 
 // GLOBAL CONSTANTS
-// const CURRENT_DATE = dayjs('2023-11-12 13:30:00'); // For testing
-const CURRENT_DATE = dayjs();
+const CURRENT_DATE = dayjs('2023-11-12 13:30:00'); // For testing
+// const CURRENT_DATE = dayjs();
 const dateFormated = `${CURRENT_DATE.format('YYMMDD')}`
 const START_TIME = 9;
 const END_TIME = 17;
@@ -93,10 +93,13 @@ function createHourBlock(h) {
         // Adds appropriate class depending on hour of the day
         if (h === currentHour) {
             textCol.addClass('present');
+            hourCol.addClass('hour-present');
         } else if (h < currentHour) {
             textCol.addClass('past');
+            hourCol.addClass('hour-past');
         } else {
             textCol.addClass('future');
+            hourCol.addClass('hour-future');
         }
 
         if (hasData) {

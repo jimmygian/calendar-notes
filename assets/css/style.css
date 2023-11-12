@@ -39,6 +39,7 @@ header {
 .hour-block {
   text-align: center;
   border-radius: 15px;
+  /* max-height: 2.5rem; */
 }
 
 .hour {
@@ -49,6 +50,16 @@ header {
   justify-content: center;
   align-items: center;
 }
+.hour-past {
+  color: #a1a1a1;
+  border-top: 1px dashed #a8a8a8;
+}
+.hour-present {
+  background: linear-gradient(to left, #ff736c52, white);
+}
+.hour-future {
+  background: linear-gradient(to left, #77dd7725, white);
+}
 
 /* Mid side */
 .description {
@@ -58,7 +69,7 @@ header {
 /* Save Button (right side) */
 .row {
   white-space: pre-wrap;
-  height: 80px;
+  /* height: 80px; */
   border-top: 1px solid white;
 }
 
