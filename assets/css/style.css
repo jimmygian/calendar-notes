@@ -69,6 +69,13 @@ header {
   background-color: #d3d3d3;
   color: white;
 }
+.past:focus {
+  background-color: #d3d3d3;
+  color: white;
+}
+.past:hover {
+  background-color: #cfcfcf;
+}
 
 .present {
   background-color: #ff6961;
@@ -78,6 +85,9 @@ header {
   background-color: #fa817a;
   color: white;
 }
+.present:hover {
+  background-color: #ff736c;
+}
 
 .future {
   background-color: #77dd77;
@@ -86,6 +96,10 @@ header {
 .future:focus {
   background-color: #9af09a;
   color: white;
+}
+.future:hover {
+  background-color: #84de84;
+;
 }
 
 

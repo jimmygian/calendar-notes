@@ -8,7 +8,8 @@ dayjs.extend(window.dayjs_plugin_advancedFormat);
 const currentDay = dayjs();
 const timeEl = $('#currentTime');
 const scheduleSectionDiv = $('.schedule-section');
-
+const START_TIME = 9;
+const END_TIME = 17;
 
 // FUNCTIONS //
 
@@ -30,20 +31,32 @@ function updateTime() {
 
 // CREATE BLOCKS
 // Figure out how to make a block for every hour from 9 to 5 inclusive
-function createHourBlock(hour) {
+function createHourBlock(h) {
     $(document).ready(function() {
 
-        //
+        // Get hour from day.js
+        let hour = dayjs().hour(h);
+        // Get current hour
+        let currentHour = dayjs().hour();
 
         // Creates hour block
         let hourBlock = $('<div class="row hour-block">');
     
         // Creates hour column and appends the current hour
         let hourCol = $('<div class="col-3 col-md-2 hour">');
-        hourCol.append(`<div class=${hour}>${hour}</div>`);
+        hourCol.append(`<div class=${h}>${hour.format('h A')}</div>`);
     
         // Creates text column
-        let textCol = $('<textarea class="col form-control description future" name="description-text" id="textArea">');
+        let textCol = $('<textarea class="col form-control description" name="description-text" id="textArea">');
+
+        // Add appropriate class depending on hour of the day
+        if (h === currentHour) {
+            textCol.addClass('present');
+        } else if (h < currentHour) {
+            textCol.addClass('past');
+        } else {
+            textCol.addClass('future');
+        }
         
         //  Creates Save button and appends icon
         let saveButton = $('<button type="button" class=" btn d-flex justify-content-center align-items-center btn-danger col-2 col-md-1 saveBtn">');
@@ -107,10 +120,14 @@ function startApp () {
     // Starts Timer
     updateTime()
 
-    createHourBlock(1);
-    createHourBlock(2);
-    createHourBlock(3);
+    
+    for (let i = START_TIME; i <= END_TIME; i++) {
+        createHourBlock(i);
+    }
 }
 
 // Calls startApp() function that starts all other startup functions
 startApp()
+
+let hour = dayjs().hour(9);
+console.log(hour.format('h A'))
