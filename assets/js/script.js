@@ -15,10 +15,11 @@ dayjs.extend(window.dayjs_plugin_advancedFormat);
 // GLOBAL SELECTORS
 const timeEl = $('#currentTime');
 const scheduleSectionDiv = $('.schedule-section');
+const dayEl = $('#currentDay');
 
 // GLOBAL CONSTANTS
-const CURRENT_DATE = dayjs('2023-11-12 13:30:00'); // For testing
-// const CURRENT_DATE = dayjs();
+// const CURRENT_DATE = dayjs('2023-11-12 13:30:00'); // For testing
+const CURRENT_DATE = dayjs();
 const dateFormated = `${CURRENT_DATE.format('YYMMDD')}`
 const START_TIME = 9;
 const END_TIME = 17;
@@ -123,12 +124,29 @@ function createHourBlock(h) {
 
 
 
+function storeText(key, value) {
+    
+    let schedule = user.schedule;
+
+    // Removes key if value is an empty string
+    if (value.trim(" ") !== "") {
+        schedule[key] = value.trim();
+    } else {
+        delete schedule[key];
+    }
+
+    // Stringify object and save it to localStorage
+    userJSON = JSON.stringify(user);
+    localStorage.setItem('userData', userJSON);
+}
+
+
 
 // ## STARTUP FUNCTION ## //
 
 function startApp() {
     // 1. Figures out today's date and display it at the top of the page
-    let dayEl = $('#CURRENT_DATE');
+    
     dayEl.text(CURRENT_DATE.format('dddd, MMMM Do'));
 
     // 2. Starts Timer
@@ -160,19 +178,3 @@ scheduleSectionDiv.on('click', function (e) {
         storeText(blockHour, blockText);
     }
 });
-
-function storeText(key, value) {
-
-    let schedule = user.schedule;
-
-    // Removes key if value is an empty string
-    if (value.trim(" ") !== "") {
-        schedule[key] = value.trim();
-    } else {
-        delete schedule[key];
-    }
-
-    // Stringify object and save it to localStorage
-    userJSON = JSON.stringify(user);
-    localStorage.setItem('userData', userJSON);
-}
