@@ -11,9 +11,16 @@ dayjs.extend(window.dayjs_plugin_advancedFormat);
 const timeEl = $('#currentTime');
 const scheduleSectionDiv = $('.schedule-section');
 const CURRENT_DATE = dayjs();
+const dateFormated = `${CURRENT_DATE.format('YYMMDD')}`
 const START_TIME = 9;
 const END_TIME = 20;
+const userData = JSON.parse(localStorage.getItem('userData')) || {};
+console.log(userData);
 
+let user = {
+    lastSaved: dateFormated,
+    schedule: {}
+};
 
 
 
@@ -42,7 +49,7 @@ function createHourBlock(h) {
 
         // Creates hour block
         let hourBlock = $(`<div class="row hour-block">`);
-        hourBlock.attr('id', `hour-block-${h}`)
+        hourBlock.attr('id', h)
     
         // Creates hour column and appends the current hour
         let hourCol = $('<div class="col-3 col-md-2 hour">');
@@ -104,16 +111,25 @@ scheduleSectionDiv.on('click', function(e) {
     if (target.tagName === 'BUTTON') {
         // Store hour-block's hour in a variable
         let blockText = target.previousElementSibling.value;
-        let blockHour = target.previousElementSibling.previousElementSibling.innerText;
+        let blockHour = target.parentElement.id;
         console.log(`${blockHour}: ${blockText}`);
         storeText(blockHour, blockText);
     }
 });
 
 function storeText(key, value) {
+
+    let schedule = user.schedule;
+
     if (value !== "") {
-        localStorage.setItem(key, value);
+        schedule[key] = value;
+        console.log(user);
     } else {
-        localStorage.removeItem(key);
+        delete schedule[key];
+        console.log(user);
     }
+
+    userJSON = JSON.stringify(user);
+
+    localStorage.setItem('userData', userJSON);
 }
