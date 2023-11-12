@@ -7,7 +7,6 @@ to localStorage.
 */
 
 
-
 // EXTENSIONS (for day.js) //
 dayjs.extend(window.dayjs_plugin_calendar);
 dayjs.extend(window.dayjs_plugin_advancedFormat);
@@ -16,7 +15,6 @@ dayjs.extend(window.dayjs_plugin_advancedFormat);
 const timeEl = $('#currentTime');
 const scheduleSectionDiv = $('.schedule-section');
 const dayEl = $('#currentDay');
-
 // GLOBAL CONSTANTS
 // const CURRENT_DATE = dayjs('2023-11-12 13:30:00'); // For testing
 const CURRENT_DATE = dayjs();
@@ -24,16 +22,16 @@ const dateFormated = `${CURRENT_DATE.format('YYMMDD')}`
 const START_TIME = 9;
 const END_TIME = 17;
 const userData = JSON.parse(localStorage.getItem('userData')) || {};
-
 // GLOBAL VARIABLES //
 let hasData = false;
 let user = { lastSaved: dateFormated, schedule: {} };
 
 
+
 // ========= //
-// Starts all startup functions (declared below)
 startApp();
 // ========= //
+
 
 
 
@@ -53,7 +51,6 @@ function updateTime() {
 }
 
 
-
 // Updates 'hasData' and 'user[schedule]' based on userData
 function updateUserData() {
     if (Object.keys(userData).length > 0) {
@@ -66,7 +63,6 @@ function updateUserData() {
         }
     }
 }
-
 
 
 // Creates hour-block instance
@@ -123,7 +119,6 @@ function createHourBlock(h) {
 }
 
 
-
 function storeText(key, value) {
     
     let schedule = user.schedule;
@@ -146,7 +141,6 @@ function storeText(key, value) {
 
 function startApp() {
     // 1. Figures out today's date and display it at the top of the page
-    
     dayEl.text(CURRENT_DATE.format('dddd, MMMM Do'));
 
     // 2. Starts Timer
