@@ -17,8 +17,8 @@ const timeEl = $('#currentTime');
 const scheduleSectionDiv = $('.schedule-section');
 
 // GLOBAL CONSTANTS
-const CURRENT_DATE = dayjs('2023-11-12 13:30:00'); // For testing
-// const CURRENT_DATE = dayjs();
+// const CURRENT_DATE = dayjs('2023-11-12 13:30:00'); // For testing
+const CURRENT_DATE = dayjs();
 const dateFormated = `${CURRENT_DATE.format('YYMMDD')}`
 const START_TIME = 9;
 const END_TIME = 17;
@@ -162,16 +162,14 @@ function storeText(key, value) {
 
     let schedule = user.schedule;
 
-    if (value !== "") {
-        schedule[key] = value;
-        console.log(user);
+    // Removes key if value is an empty string
+    if (value.trim(" ") !== "") {
+        schedule[key] = value.trim();
     } else {
         delete schedule[key];
-        console.log(user);
-        console.log('HERE!')
     }
 
+    // Stringify object and save it to localStorage
     userJSON = JSON.stringify(user);
-
     localStorage.setItem('userData', userJSON);
 }
