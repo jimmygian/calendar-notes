@@ -7,7 +7,7 @@ dayjs.extend(window.dayjs_plugin_advancedFormat);
 
 const currentDay = dayjs();
 const timeEl = $('#currentTime');
-
+const scheduleSectionDiv = $('.schedule-section');
 
 
 // FUNCTIONS //
@@ -30,6 +30,34 @@ function updateTime() {
 
 // CREATE BLOCKS
 // Figure out how to make a block for every hour from 9 to 5 inclusive
+function createHourBlock(hour) {
+    $(document).ready(function() {
+
+        //
+
+        // Creates hour block
+        let hourBlock = $('<div class="row hour-block">');
+    
+        // Creates hour column and appends the current hour
+        let hourCol = $('<div class="col-3 col-md-2 hour">');
+        hourCol.append(`<div class=${hour}>${hour}</div>`);
+    
+        // Creates text column
+        let textCol = $('<textarea class="col form-control description future" name="description-text" id="textArea">');
+        
+        //  Creates Save button and appends icon
+        let saveButton = $('<button type="button" class=" btn d-flex justify-content-center align-items-center btn-danger col-2 col-md-1 saveBtn">');
+        saveButton.append('<i class="fas fa-save"></i>');
+        
+        // Appends all columns to hourBlock
+        hourBlock.append(hourCol, textCol, saveButton);
+    
+        // Appends all hourBlock to shcedule div
+        scheduleSectionDiv.append(hourBlock);
+    });
+}
+
+
     // each block should: 
     // allow for text entry (textarea or input element)
     // include an hour label
@@ -78,6 +106,10 @@ function startApp () {
     dayEl.text(currentDay.format('dddd, MMMM Do'));
     // Starts Timer
     updateTime()
+
+    createHourBlock(1);
+    createHourBlock(2);
+    createHourBlock(3);
 }
 
 // Calls startApp() function that starts all other startup functions
