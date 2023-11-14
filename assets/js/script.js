@@ -16,8 +16,8 @@ const timeEl = $('#currentTime');
 const scheduleSectionDiv = $('.schedule-section');
 const dayEl = $('#currentDay');
 // GLOBAL CONSTANTS
-const CURRENT_DATE = dayjs('2023-11-12 13:30:00'); // For testing
-// const CURRENT_DATE = dayjs();
+// const CURRENT_DATE = dayjs('2023-11-12 13:30:00'); // For testing
+const CURRENT_DATE = dayjs();
 const dateFormated = `${CURRENT_DATE.format('YYMMDD')}`
 const START_TIME = 9;
 const END_TIME = 17;
